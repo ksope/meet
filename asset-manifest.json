@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/ksope/meet/static/css/main.073c9b0a.css",
+    "main.js": "/ksope/meet/static/js/main.00f7088e.js",
+    "static/js/591.847fe6f1.chunk.js": "/ksope/meet/static/js/591.847fe6f1.chunk.js",
+    "service-worker.js": "/ksope/meet/service-worker.js",
+    "static/media/logo.svg": "/ksope/meet/static/media/logo.2d27ead7c10f774c5306bcf3c257a728.svg",
+    "index.html": "/ksope/meet/index.html",
+    "main.073c9b0a.css.map": "/ksope/meet/static/css/main.073c9b0a.css.map",
+    "main.00f7088e.js.map": "/ksope/meet/static/js/main.00f7088e.js.map",
+    "591.847fe6f1.chunk.js.map": "/ksope/meet/static/js/591.847fe6f1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.00f7088e.js"
+  ]
+}
