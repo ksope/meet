@@ -8,7 +8,7 @@ const NumberOfEvents = () => {
         if (!isNaN(numberValue)) {
             setEventNumbers(numberValue);
         } else {
-            setEventNumbers(0);
+            setEventNumbers(32);
         }
     };
 

@@ -1,7 +1,6 @@
 import Event from "../components/Event";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { getEvents } from "../api";
 
 const event = {
     kind: "calendar#event",
@@ -13,8 +12,7 @@ const event = {
     created: "2020-05-19T19:17:46.000Z",
     updated: "2020-05-27T12:01:32.356Z",
     summary: "Learn JavaScript",
-    description:
-        "Have you wondered how you can ask Google to show you the list of the top ten must-see places in London? And how Google presents you the list? How can you submit the details of an application? Well, JavaScript is doing these. :) \n\nJavascript offers interactivity to a dull, static website. Come, learn JavaScript with us and make those beautiful websites.",
+    description: "Have you wondered how you can ask Google to show",
     location: "London, UK",
     creator: {
         email: "fullstackwebdev@careerfoundry.com",
@@ -46,54 +44,70 @@ const event = {
 };
 
 describe("<Event /> component", () => {
-    let EventComponent;
-
-    beforeEach(() => {
-        EventComponent = render(<Event event={event} />);
-    });
-
     test("renders event location", () => {
-        expect(EventComponent.queryByText(event.location)).toBeInTheDocument();
+        render(<Event event={event} />);
+        const location = screen.getByText(event.location);
+        expect(location).toBeInTheDocument();
     });
 
     test("renders event start time", () => {
-        expect(EventComponent.queryByText(event.created)).toBeInTheDocument();
+        render(<Event event={event} />);
+        const startTime = screen.getByText(event.created);
+        expect(startTime).toBeInTheDocument();
     });
 
-    test("renders event details button with the title (show details)", () => {
-        const eventButton = EventComponent.queryByRole("button");
-        expect(eventButton).toBeInTheDocument();
-        expect(eventButton).toHaveClass("details-btn");
+    test("renders event details (show details) button", () => {
+        render(<Event event={event} />);
+        const showDetailsButton = screen.getByRole("button", {
+            name: /Show Details/i,
+        });
+        expect(showDetailsButton).toBeInTheDocument();
     });
 
     test("renders title", () => {
-        expect(EventComponent.queryByText(event.summary)).toBeInTheDocument();
+        render(<Event event={event} />);
+        const eventTitle = screen.getByText(event.summary);
+        expect(eventTitle).toBeInTheDocument();
     });
 
     test("by default, event's details section should be hidden", () => {
-        expect(
-            EventComponent.queryByText(event.description)
-        ).not.toBeInTheDocument();
+        render(<Event event={event} />);
+        const eventDescription = screen.queryByText(
+            /Have you wondered how you can ask Google to show/i
+        );
+        expect(eventDescription).not.toBeInTheDocument();
     });
 
     test("shows the details section when the user clicks on the 'Show Details' button", async () => {
+        render(<Event event={event} />);
         const user = userEvent.setup();
-        const allEvents = await getEvents();
-        EventComponent.rerender(<Event event={allEvents[0]} />);
-        const showBtn = EventComponent.queryByRole("button");
+        const showBtn = screen.getByRole("button", {
+            name: /Show Details/i,
+        });
         await user.click(showBtn);
-        expect(
-            EventComponent.queryByText(event.description)
-        ).toBeInTheDocument();
+        const showDetails = await screen.findByText(
+            /Have you wondered how you can ask Google to show/i
+        );
+        expect(showDetails).toBeInTheDocument();
     });
 
     test("hides the details section when the user clicks on the 'Hide Details' button", async () => {
+        render(<Event event={event} />);
         const user = userEvent.setup();
-        const allEvents = await getEvents();
-        EventComponent.rerender(<Event event={allEvents[0]} />);
-        await user.click(EventComponent.getByRole("button"));
-        expect(
-            EventComponent.getByRole("button", { name: "Hide Details" })
-        ).toBeInTheDocument();
+
+        //user clicks the 'Show Details' butto to display the event description
+        const btn1 = screen.getByRole("button", {
+            name: /Show Details/i,
+        });
+        await user.click(btn1);
+
+        //user clicks the button again. Only this time, the button displays 'Hide Details' to hide the event description
+        const btn2 = screen.getByRole("button", {
+            name: /Hide Details/i,
+        });
+
+        await user.click(btn2);
+
+        expect(screen.queryByTestId("description")).not.toBeInTheDocument();
     });
 });

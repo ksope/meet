@@ -10,11 +10,16 @@ const Event = ({ event }) => {
         <li>
             <div className="event">
                 <h2>{event.summary}</h2>
-                {/* <div className="name">{event.summary}</div> */}
-                <div className="location">{event.location} </div>
-                <div className="dateTime">{event.start.dateTime}</div>
+                <div className="location">
+                    <p>{event.location}</p>
+                </div>
+                <div className="dateTime">
+                    <p>{event.created}</p>
+                </div>
                 {showEventDetails && (
-                    <div className="description">{event.description}</div>
+                    <div data-testid="description" className="description">
+                        {event.description}
+                    </div>
                 )}
                 <button className="details-btn" onClick={toggleEventDetails}>
                     {showEventDetails ? "Hide Details" : "Show Details"}
