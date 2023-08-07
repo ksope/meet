@@ -1,15 +1,13 @@
 import { useState } from "react";
 
-const NumberOfEvents = () => {
+const NumberOfEvents = ({ setCurrentNOE }) => {
     const [eventNumbers, setEventNumbers] = useState(32);
 
-    const handleInputChanged = (value) => {
-        const numberValue = parseInt(value); // Convert the input value to a number
-        if (!isNaN(numberValue)) {
-            setEventNumbers(numberValue);
-        } else {
-            setEventNumbers(32);
-        }
+    const handleInputChanged = (event) => {
+        //set the value of what user types into textbox
+        const value = event.target.value;
+        setEventNumbers(value);
+        setCurrentNOE(value)
     };
 
     return (
@@ -19,7 +17,7 @@ const NumberOfEvents = () => {
                 className="events-numbers"
                 placeholder="Enter Number of Events"
                 value={eventNumbers}
-                onChange={(e) => handleInputChanged(e.target.value)}
+                onChange={handleInputChanged}
             />
         </div>
     );

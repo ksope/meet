@@ -50,3 +50,5 @@ describe("<App /> integration", () => {
         expect(allRenderedEventItems.length).toBe(berlinEvents.length);
     });
 });
+
+
