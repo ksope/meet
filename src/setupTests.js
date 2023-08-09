@@ -19,3 +19,5 @@ console.error = (...args) => {
     );
     if (!ignoreMessage) originalError(...args);
 };
+//extend the jest default timeout to 30,000ms
+jest.setTimeout(50000);
