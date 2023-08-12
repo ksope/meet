@@ -13,19 +13,13 @@ function App() {
 
     const fetchData = async () => {
         const allEvents = await getEvents();
-        if (currentNOE >= 32) {
-            const filteredEvents =
-                currentCity === "See all cities"
-                    ? allEvents
-                    : allEvents.filter(
-                          (event) => event.location === currentCity
-                      );
-            setEvents(filteredEvents.slice(0, currentNOE));
-            setAllLocations(extractLocations(allEvents));
-        } else {
-            setEvents(allEvents.slice(0, currentNOE));
-            setAllLocations(extractLocations(allEvents));
-        }
+
+        const filteredEvents =
+            currentCity === "See all cities"
+                ? allEvents
+                : allEvents.filter((event) => event.location === currentCity);
+        setEvents(filteredEvents.slice(0, currentNOE));
+        setAllLocations(extractLocations(allEvents));
     };
 
     useEffect(() => {
