@@ -10,19 +10,25 @@ import { extractLocations, getEvents } from "../api";
 
 describe("<NumberOfEvents /> component", () => {
     test("renders text input", () => {
-        render(<NumberOfEvents />);
+        render(
+            <NumberOfEvents setErrorAlert={() => {}} setCurrentNOE={() => {}} />
+        );
         const eventsNumberTextBox = screen.getByRole("textbox");
         expect(eventsNumberTextBox).toBeInTheDocument();
     });
 
     test("renders default value of the input field as 32", () => {
-        render(<NumberOfEvents />);
+        render(
+            <NumberOfEvents setErrorAlert={() => {}} setCurrentNOE={() => {}} />
+        );
         const eventsNumberTextBox = screen.getByRole("textbox");
         expect(eventsNumberTextBox).toHaveValue("32");
     });
 
     test("renders the value that user types into textbox", () => {
-        render(<NumberOfEvents setCurrentNOE={() => {}} />);
+        render(
+            <NumberOfEvents setErrorAlert={() => {}} setCurrentNOE={() => {}} />
+        );
         const inputElement = screen.getByRole("textbox");
         fireEvent.change(inputElement, {
             target: { value: "{backspace}{backspace}10" },
