@@ -1,10 +1,10 @@
 import React, { useState, useEffect, PureComponent } from "react";
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from "recharts";
 
-const EventGenresChart = ({events}) => {
+const EventGenresChart = ({ events }) => {
     const [data, setData] = useState([]);
 
-    //update the data which will be used in our pie chart based any change in the events 
+    //update the data which will be used in our pie chart based any change in the events
     useEffect(() => {
         setData(getData());
     }, [`${events}`]);
@@ -29,7 +29,7 @@ const EventGenresChart = ({events}) => {
         return data;
     };
 
-    //color pallette for 
+    //color pallette for
     const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#ec4976"];
 
     //create a customised label which will render the the summary and percentage of each genre type e.g "React 50%"
