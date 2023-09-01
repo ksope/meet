@@ -20,7 +20,7 @@ function App() {
 
     const handleonlineStatusCheck = () => {
         navigator.onLine ? setOnlineState(true) : setOnlineState(false);
-
+//error message for 
         const warningText =
             "You are currently offline. All displayed events have been loaded from your cache";
 
