@@ -97,7 +97,7 @@ Clone repository using command git clone https://github.com/ksope/meet.git
 Run the app by navigating to the meet folder and using the command: npm run start
 
 LIVE DEMO
-Test Users: Test users will need to request permission to be added (via their email addresses) to the authorized users list before users are allowed to use app. Added users will receive an authorization token which can be used to demo the app.
+Test Users: Go to "https://ksope.github.io/meet/". Test users will need to request permission to be added (via their email addresses) to the authorized users list before users are allowed to use app. Added users will receive an authorization token which can be used to demo the app.
 
 How To Run Tests:
 From the project root folder, enter the command: npm run test
